@@ -84,7 +84,7 @@ def edit_employee(id):
 
 
 def employees_data():
-    # DataTables params
+    
     draw = int(request.args.get("draw", 1))
     start = int(request.args.get("start", 0))
     length = int(request.args.get("length", 10))
@@ -92,7 +92,7 @@ def employees_data():
 
     query = Employee.query
 
-    # Multi-column search
+    
     if search_value:
         query = query.filter(
             or_(
@@ -103,14 +103,14 @@ def employees_data():
             )
         )
 
-    # Total records after filtering
+    
     records_filtered = query.count()
     records_total = Employee.query.count()
 
-    # Pagination: get only current page rows
+    
     employees = query.offset(start).limit(length).all()
 
-    # Prepare data
+    
     data = []
     for i, emp in enumerate(employees, start=1 + start):
         data.append({

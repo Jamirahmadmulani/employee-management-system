@@ -13,9 +13,6 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    # ---------------------------
-    # AUTH ROUTES
-    # ---------------------------
 
     app.add_url_rule("/", "login",
         auth_controller.login, methods=["GET","POST"])
@@ -23,19 +20,14 @@ def create_app():
     app.add_url_rule("/login", "login_page",
         auth_controller.login, methods=["GET","POST"])
 
-    # ✅ REGISTER ROUTE ADD KIYA
+   
     app.add_url_rule("/register", "register",
         auth_controller.register, methods=["GET","POST"])
 
     app.add_url_rule("/logout", "logout",
         auth_controller.logout)
 
-    # ---------------------------
-    # EMPLOYEE ROUTES
-    # ---------------------------
-# ---------------------------
-# EMPLOYEE ROUTES
-# ---------------------------
+   
 
     app.add_url_rule("/employees", "manage_employees",
     employee_controller.manage_employees)
@@ -52,7 +44,7 @@ def create_app():
     app.add_url_rule("/employees/edit/<int:id>", "edit_employee",
     employee_controller.edit_employee, methods=["GET","POST"])
 
-# ✅ DATATABLES AJAX ROUTE
+
     app.add_url_rule("/employees_data", "employees_data",
     employee_controller.employees_data)
     return app
